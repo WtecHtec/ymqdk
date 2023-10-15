@@ -1,0 +1,17 @@
+<view class="record-content page-safe">
+		<view class="form">
+				<view class="form-item">
+						<view class="form-item-lable">评分</view>
+						<view class="form-item-value">
+								<slider class="cus-slider" block-size="14" data-key="score" bindchange="bindFormItemData" min="0" max="10" show-value />
+						</view>
+				</view>
+		</view>
+		<view class="form  mt-24">
+				<view>
+						<textarea placeholder="反馈内容..." data-key="fkcontent" bindinput="bindFormItemData" />
+				</view>
+		</view>
+		<button class="submit-btn  mt-24" bindtap="bindFk">立即反馈</button>
+		<view class="version-block">版本号: v{{ version }}</view>
+</view>

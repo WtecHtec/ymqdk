@@ -1,0 +1,23 @@
+/* pages/medal/index.wxss */
+
+.item {
+	display: flex;
+	align-items: center;
+	padding: 32rpx 30rpx;
+	background-color: #ffffff;
+}
+
+.item-txt {
+	flex: 1;
+	font-size: 30rpx;
+}
+
+.mr-12 {
+	margin-right: 12rpx;
+}
+
+.item-icon {
+	flex-shrink: 0;
+	width: 40rpx;
+	height: 40rpx;
+}

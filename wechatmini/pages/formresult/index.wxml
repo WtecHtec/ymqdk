@@ -1,0 +1,5 @@
+<view class="result-content">
+		<image class="result-img" src="{{iconImg}}" />
+		<view class="result-txt">{{txt }}</view>
+		<button class="auth-btn" bindtap="bindGoto">返回首页</button>
+</view>

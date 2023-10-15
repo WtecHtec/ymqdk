@@ -1,0 +1,25 @@
+{
+	"pages": [
+		"pages/index/index",
+		"pages/recordform/index",
+		"pages/formresult/index",
+		"pages/feedback/index",
+		"pages/medal/index",
+		"pages/calendar/index"
+	],
+	"window": {
+		"backgroundTextStyle": "light",
+		"navigationBarBackgroundColor": "#fff",
+		"navigationBarTitleText": "记刻羽球",
+		"navigationBarTextStyle": "black",
+		"backgroundColorBottom": "#F4F4F4",
+		"backgroundColorTop": "#fff"
+	},
+	"permission": {
+		"scope.userLocation": {
+			"desc": "你的位置信息将用于小程序位置接口的效果展示"
+		}
+	},
+	"style": "v2",
+	"sitemapLocation": "sitemap.json"
+}

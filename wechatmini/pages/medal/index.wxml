@@ -1,0 +1,7 @@
+<view class="page-safe">
+		<view class="item" bindtap="bindGotoCalendar">
+				<image class="item-icon mr-12" src="../../images/index/icon-07.png" />
+				<view class="item-txt">羽球日历</view>
+				<image class="item-icon" src="../../images/index/icon-06.png" />
+		</view>
+</view>

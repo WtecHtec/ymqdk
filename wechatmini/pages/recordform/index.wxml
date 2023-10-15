@@ -1,0 +1,54 @@
+<view class="record-content page-safe">
+		<view class="form">
+				<view class="form-item">
+						<view class="form-item-lable">球馆</view>
+						<view class="form-item-value">
+								<picker class="w-100p " bindchange="bindPickerChange" range-key="name" data-key="recordArena" range="{{arenaDatas}}">
+										<view class="w-100p picker-content">
+												<view class="picker-txt">{{ form.recordArena.showData}}</view>
+												<image class="picker-icon" src="../../images/index/icon-06.png" />
+										</view>
+								</picker>
+						</view>
+				</view>
+				<view class="form-item">
+						<view class="form-item-lable">此刻心情</view>
+						<view class="form-item-value">
+								<view class="w-100p emoj-content" bindtap="bindEmoj">
+										<image class="picker-icon" src="{{ form.feeling.showData }}" />
+										<image class="picker-icon {{ showEmoj && 'tap-picker '}}" src="../../images/index/icon-06.png" />
+								</view>
+								<!-- <picker class="w-100p " bindchange="bindPickerChange" range-key="name" data-key="feeling" range="{{arenaDatas}}">
+										<view class="w-100p picker-content">
+												<view class="picker-txt">{{ form.feeling.showTxt}}</view>
+												<image class="picker-icon" src="../../images/index/icon-06.png" />
+										</view>
+								</picker> -->
+						</view>
+				</view>
+				<view class="emoj-picker {{  showEmoj && 'tap-emoj-picker' }}">
+						<block wx:for="{{emojDatas }}" wx:key="index">
+								<view class="emoj-picker-item" hover-class="hover-class" bindtap="bindEmojChange" data-type="feeling" data-key="feeling" data-value="{{index}}">
+										<image class="emoj-picker-icon" src="{{ item.url }}" />
+								</view>
+						</block>
+				</view>
+		</view>
+		<view class="form pb-24 ">
+				<view class="form-item mt-24">
+						<view class="form-item-lable">美好时刻</view>
+				</view>
+				<view class="upload mt-24" bindtap="bindUpload" data-key="recordImg">
+						<view wx:if="{{ !form.recordImg.value }}" class="no-upload">
+								<image class="upload-img" src="../../images/index/icon-01.png" />
+						</view>
+						<image wx:else class="show-img" mode="aspectFill" src="{{form.recordImg.value}}" />
+				</view>
+		</view>
+		<view class="form  mt-24">
+				<view>
+						<textarea placeholder="这一刻的想法..." data-key="thoughts" bindinput="bindInput" />
+				</view>
+		</view>
+		<button class="submit-btn  mt-24" bindtap="bindSend">发布</button>
+</view>

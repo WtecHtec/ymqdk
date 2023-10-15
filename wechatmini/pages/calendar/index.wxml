@@ -1,0 +1,21 @@
+<view class="page-safe">
+		<view class="top-nav">
+				<picker mode="date" fields="month" value="{{date}}" start="{{startDate}}" end="{{endDate}}" bindchange="bindDateChange">
+						<view class="date-picker">
+								<image class="item-icon" src="../../images/index/icon-08.png" />
+								<view class="item-txt">{{ showDate }}</view>
+						</view>
+				</picker>
+		</view>
+		<view class="calendar">
+				<view class="c-week">
+						<view class="c-w-item" wx:for="{{weeks}}" wx:key="index">{{ item }}</view>
+				</view>
+				<view class="c-date">
+						<view wx:for="{{showDatas}}" wx:key="index" class="c-d-item {{ item.toDay && 'c-265cf0'}} ">
+								<image wx:if="{{item.hasRecord}}" class="emoj-picker-icon" src="{{ item.url }}" />
+								<block wx:else>{{ item.strDay || ''}}</block>
+						</view>
+				</view>
+		</view>
+</view>

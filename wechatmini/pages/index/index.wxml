@@ -1,0 +1,32 @@
+<view wx:if="{{ !isLogin }}" class="no-login">
+		<image class="user-img" src="../../images/index/icon-05.png" />
+		<view class="auth-txt">为更好的体验,需要获取用户的头像信息</view>
+		<button class="auth-btn" bindtap="bindUserProfile">点击授权</button>
+</view>
+<view wx:else class="content">
+		<map class="target-map" show-location="true" longitude="{{location.longitude}}" latitude="{{location.latitude}}">
+				<cover-view class="top-nav">
+						<cover-view class="nav-left">
+								<cover-view>{{ name || '' }}</cover-view>
+								<cover-view class="nav-left-sub">{{ high ? high + '°C' : ''}}</cover-view>
+						</cover-view>
+						<cover-view class="nav-right">
+								<cover-view class="check-block" bindtap="bindGoto" data-type="fk">
+										<cover-image class="check-img" src="../../images/index/icon-04.png" />
+										<cover-view class="check-txt">立即反馈</cover-view>
+								</cover-view>
+								<!-- <cover-view class="check-block" bindtap="bindGoto" data-type="medal">
+										<cover-image class="check-img" src="../../images/index/icon-03.png" />
+										<cover-view class="check-txt">我的勋章</cover-view>
+								</cover-view> -->
+								<cover-view class="check-block" bindtap="bindGoto" data-type="calendar">
+										<cover-image class="check-img" src="../../images/index/icon-09.png" />
+										<cover-view class="check-txt">羽球日历</cover-view>
+								</cover-view>
+						</cover-view>
+				</cover-view>
+				<cover-view class="btn" bindtap="bindGotoRecord">
+						<cover-image class="btn-img" src="../../images/index/icon-01.png" />
+				</cover-view>
+		</map>
+</view>
