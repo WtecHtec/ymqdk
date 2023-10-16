@@ -1,5 +1,5 @@
 // index.js
-import { getWeatherByLocation } from "../server/index"
+import { getWeatherByLocation } from "../ymqserver/index"
 import { getMutliLevelProperty } from "../../utils/util"
 // 获取应用实例
 const app = getApp()
