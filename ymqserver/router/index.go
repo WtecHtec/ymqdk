@@ -13,7 +13,11 @@ func InitRouter(r *gin.Engine) {
 	r.POST("/login", authMiddleware.LoginHandler)
 	// 跨域中间件
 	r.Use(middleware.Cors())
-	//加载静态资源，一般是上传的资源，例如用户上传的图片
+	// 图片校验
+	r.Use(middleware.PicVerificat())
+	// 加载静态资源，
+	r.StaticFS("/static", http.Dir("static"))
+	// 一般是上传的资源，例如用户上传的图片
 	r.StaticFS("/upload", http.Dir("upload"))
 	auth := r.Group("/auth")
 	//退出登录
@@ -27,6 +31,8 @@ func InitRouter(r *gin.Engine) {
 		UpLoadFile(auth)
 		InitAuthFeebBackRouter(auth)
 		InitAuthUserRouter(auth)
+		InitAuthEmojRouter(auth)
+		InitAuthFormResultRouter(auth)
 	}
 	TestHello(r)
 }

@@ -104,3 +104,25 @@ select m.member_id, m.member_name , cg.group_name ,cg.group_desc, cg.group_id, m
 left join class_group cg on cg.group_id  = m.group_id 
 left join (select COUNT(m.member_id) as total_person, m.group_id  from `member` m group by m.group_id ) mt on mt.group_id =  m.group_id 
 WHERE   m.user_id = 'otrlc5XUmCRfBsYHd7lLlg3uAOUs'  ORDER by m.`level`  DESC 
+
+// 查询附近场地
+
+SELECT
+arena_id, arena_name, arena_location,
+(st_distance (point (arena_longitude, arena_latitude), point(113.210411, 23.122771) ) * 111195) AS distance
+FROM
+arena
+WHERE distance < 500 AND  arena_belong = ''
+ORDER BY distance
+limit 0, 5;
+
+
+// 根据 id 查询 记录详情
+
+select r.record_img, r.record_desc, date_format(r.create_time, '%Y年%m月%d日 %H:%i') as str_create_date, a.arena_name from record r join left arena a on r.arena_id = a.arena_id where enable = 1 and  r.record_id = '111'
+
+
+//  根据 创建时间 查询记录
+select r.record_img, r.record_desc, date_format(r.create_time, '%Y-%m-%d') as str_create_date  from record r  where  enable = 1 and DATE_FORMAT(r.create_time,'%Y-%m') = '2017-08'
+
+// 
