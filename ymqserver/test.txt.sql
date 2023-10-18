@@ -123,6 +123,14 @@ select r.record_img, r.record_desc, date_format(r.create_time, '%Y年%m月%d日 
 
 
 //  根据 创建时间 查询记录
-select r.record_img, r.record_desc, date_format(r.create_time, '%Y-%m-%d') as str_create_date  from record r  where  enable = 1 and DATE_FORMAT(r.create_time,'%Y-%m') = '2017-08'
+select r.record_img, r.record_desc, date_format(r.create_time, '%Y-%m-%d') as str_create_date  from record r  where  r.enable = 1 and DATE_FORMAT(r.create_time,'%Y-%m') = '2017-08'
 
 // 
+
+select a.arena_location, a.arena_name, a.arena_longitude, a.arena_latitude, r.emoj_id 
+ from arena a left join record r on r.arena_id = a.arena_id and r.enable = 1 
+ where  a.enable = 1 and a.arena_belong = ''
+ group by a.arena_id
+ order by r.create_time
+
+
