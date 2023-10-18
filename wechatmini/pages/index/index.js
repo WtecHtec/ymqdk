@@ -95,7 +95,13 @@ Page({
 	/**
 	 * 跳转 上传记录页
 	 */
-	async bindGotoRecord() {
+	bindGotoRecord() {
+		this.handleGotoRecord()
+	},
+	/**
+	 * 跳转 上传记录页
+	 */
+   async handleGotoRecord() {
 		console.log('bindGotoRecord', app.authorize.LOCATION_RIGHT)
 		const [status] = await app.checkAuthorize(app.authorize.LOCATION_RIGHT)
 		console.log(status)
@@ -106,6 +112,7 @@ Page({
 			wx.navigateTo({ url: `/pages/recordform/index?location=${JSON.stringify(location)}`, })
 		}
 	},
+  
 	/**
 	 * 用户授权、登陆
 	 * @param {} e 
