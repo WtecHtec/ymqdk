@@ -1,6 +1,8 @@
 // index.js
-import { getWeatherByLocation } from "../ymqserver/index"
+import { getWeatherByLocation, postCheckLogin, postLogin, getArenaAll } from "../server/index"
 import { getMutliLevelProperty } from "../../utils/util"
+import { setCacheByKey } from "../../utils/storage"
+import { CACHE_AUTH_TOKEN } from "../../config"
 // 获取应用实例
 const app = getApp()
 
@@ -14,24 +16,30 @@ Page({
 		},
 		seniverseKey: app.config.seniverseKey,
 		isLogin: true || app.store.isLogin,
+		markerDatas: [],
+		belongs: ['深圳'],
+		arenaBelong: '深圳',
 	},
 
 	onLoad() {
 		console.log(app)
+
 		app.bus.on('location', this.getCurentLocation)
+		this.checkLoin()
 	},
 
 	onUnload() {
 		app.bus.off('location', this.getCurentLocation)
 	},
 	onShow() {
-		this.data.isLogin && this.getCurentLocation()
+		this.getCurentLocation()
 	},
 	/**
 	 * 获取当前位置
 	 */
 	getCurentLocation() {
 		const that = this;
+		const { belongs } = this.data;
 		wx.getLocation({
 			type: 'wgs84',
 			success: async (res) => {
@@ -52,9 +60,18 @@ Page({
 					return
 				};
 				const [name, high] = await that.getWeatherByLocation(this.data.seniverseKey, `${latitude}:${longitude}`)
+				const belong = that.checkBelongs(name, belongs)
+				if (!belong) {
+					wx.showToast({
+						title: '当前地区尚未更新数据,请谅解!',
+						icon: 'error',
+						duration: 2000
+					})
+				}
 				that.setData({
 					name,
 					high,
+					arenaBelong: belong,
 					location: {
 						latitude,
 						longitude,
@@ -101,7 +118,7 @@ Page({
 	/**
 	 * 跳转 上传记录页
 	 */
-   async handleGotoRecord() {
+	async handleGotoRecord() {
 		console.log('bindGotoRecord', app.authorize.LOCATION_RIGHT)
 		const [status] = await app.checkAuthorize(app.authorize.LOCATION_RIGHT)
 		console.log(status)
@@ -112,7 +129,7 @@ Page({
 			wx.navigateTo({ url: `/pages/recordform/index?location=${JSON.stringify(location)}`, })
 		}
 	},
-  
+
 	/**
 	 * 用户授权、登陆
 	 * @param {} e 
@@ -126,8 +143,9 @@ Page({
 				console.log(res)
 				const nickName = getMutliLevelProperty(res, 'userInfo.nickName', '')
 				console.log(nickName)
+				this.nickName = nickName;
 				wx.showLoading()
-				const [status] = await this.handleLogin()
+				await this.handleLogin()
 				wx.hideLoading()
 			}
 		})
@@ -141,9 +159,7 @@ Page({
 				success: res => {
 					// 发送 res.code 到后台换取 openId, sessionKey, unionId
 					console.log(res,)
-					this.setData({
-						isLogin: true,
-					})
+					this.handLogin(res.code, this.nickName)
 					resolve([0])
 				},
 				fail() {
@@ -164,5 +180,100 @@ Page({
 		wx.navigateTo({ url: pageMap[type] || `/pages/medal/index`, })
 	},
 
+	/**
+	 *  检测登陆
+	 */
+	async checkLoin() {
+		const [err, res] = await postCheckLogin();
+		if (!err && res) {
+			let isLogin = false
+			if (res.code === 200) {
+				isLogin = true
+			}
+			this.setData({ isLogin }, () => {
+				this.InitData()
+			})
+		} else {
+			wx.showToast({
+				title: '服务异常',
+				icon: 'error',
+				duration: 2000
+			})
+			this.setData({ isLogin: false })
+		}
+	},
+	/**
+	 * 登陆
+	 * @param {} code 
+	 * @param {*} avatarUrl 
+	 * @param {*} nickName 
+	 */
+	async handLogin(code, nickName) {
+		const [err, res] = await postLogin(code, nickName);
+		if (!err && res && res.code === 200) {
+			setCacheByKey(CACHE_AUTH_TOKEN, res.minikey)
+			this.setData({ isLogin: true }, () => {
+				this.InitData()
+			})
+		} else {
+			wx.showToast({
+				title: '服务异常',
+				icon: 'error',
+				duration: 2000
+			})
+		}
+	},
+	/**
+	 * 判断是否在 数据地区中
+	 */
+	checkBelongs(arena, belongs) {
+		if (!Array.isArray(belongs) || !belongs.length) return false
+		for (let i = 0; i < belongs.length; i++) {
+			if (arena.indexOf(belongs[i]) !== -1) return belongs[i]
+		}
+		return false
+	},
+	/**
+	 *  初始化数据
+	 */
+	InitData() {
+		this.mapCtx = wx.createMapContext('ymqMapId')
+		this.getArenas();
+	},
+	async getArenas() {
+		const { arenaBelong } = this.data;
+		if (!arenaBelong) return
+		const [err, res] = await getArenaAll(arenaBelong)
+		const data = getMutliLevelProperty(res, 'data', [])
+		if (!err && res && res.code === 200 && Array.isArray(data) && data.length) {
+			const markerDatas = []
+			data.forEach(({ arena_id, arena_latitude, arena_longitude }, i) => {
+				markerDatas.push({
+					id: i,
+					width: 50,
+					height: 50,
+					latitude: Number(arena_latitude),
+					longitude: Number(arena_longitude),
+					iconPath: '../../images/index/icon-10.png',
+				});
+
+			})
+			console.log(' markers ===', markerDatas)
+
+			this.mapCtx.addMarkers({
+				markers: markerDatas,
+				clear: true,
+				complete(res) {
+					console.log('clusterCreate addMarkers=====', res)
+				},
+				fail(err) {
+					console.error('clusterCreate fail', err)
+				}
+			})
+
+			// this.setData({ markerDatas })
+
+		}
+	}
 
 })

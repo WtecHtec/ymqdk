@@ -52,11 +52,9 @@ func GetNearbyArena(arenaLongitude string, arenaLatitude string, arenaBelong str
 func GetArenaByAll(arenaBelong string) (bool, int, []responsemode.ArenaResult) {
 	datas := make([]responsemode.ArenaResult, 0)
 	sqlStr := fmt.Sprintf(`
-	select a.arena_location, a.arena_name, a.arena_longitude, a.arena_latitude, r.emoj_id 
-	from arena a left join record r on r.arena_id = a.arena_id and r.enable = 1 
-	where  a.enable = 1 and a.arena_belong = '%v'
-	group by a.arena_id
-	order by r.create_time`, arenaBelong)
+	select a.arena_id,a.arena_location, a.arena_name, a.arena_longitude, a.arena_latitude 
+	from arena a
+	where  a.enable = 1 and a.arena_belong = '%v'`, arenaBelong)
 	err := datasource.Engine.SQL(sqlStr).Find(&datas)
 	if err != nil {
 		logger.Logger.Error(fmt.Sprintf("GetNearbyArena获取数据失败 %v", err))

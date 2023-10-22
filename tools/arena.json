@@ -1,1 +1,502 @@
-[]
+[
+	{
+		"arena_name": "大浪羽毛球馆",
+		"arena_longitude": "113.99",
+		"arena_latitude": "22.69"
+	},
+	{
+		"arena_name": "南山文体中心羽毛球馆",
+		"arena_longitude": "113.92",
+		"arena_latitude": "22.54"
+	},
+	{
+		"arena_name": "路丰羽毛球馆",
+		"arena_longitude": "114.11",
+		"arena_latitude": "22.54"
+	},
+	{
+		"arena_name": "元羽宙羽毛球馆",
+		"arena_longitude": "114.07",
+		"arena_latitude": "22.61"
+	},
+	{
+		"arena_name": "深圳自贸中心羽毛球场",
+		"arena_longitude": "113.92",
+		"arena_latitude": "22.49"
+	},
+	{
+		"arena_name": "锡才文化福保综合运动馆",
+		"arena_longitude": "114.05",
+		"arena_latitude": "22.51"
+	},
+	{
+		"arena_name": "棕榈泉体育运动中心羽毛球馆",
+		"arena_longitude": "113.96",
+		"arena_latitude": "22.53"
+	},
+	{
+		"arena_name": "深圳湾春茧羽毛球馆",
+		"arena_longitude": "113.95",
+		"arena_latitude": "22.52"
+	},
+	{
+		"arena_name": "布吉大芬羽毛球馆",
+		"arena_longitude": "114.14",
+		"arena_latitude": "22.61"
+	},
+	{
+		"arena_name": "百胜羽毛球馆",
+		"arena_longitude": "114.06",
+		"arena_latitude": "22.58"
+	},
+	{
+		"arena_name": "厚业文体中心羽毛球馆（文锦渡馆）",
+		"arena_longitude": "114.13",
+		"arena_latitude": "22.54"
+	},
+	{
+		"arena_name": "翎动羽毛球馆",
+		"arena_longitude": "114.1",
+		"arena_latitude": "22.53"
+	},
+	{
+		"arena_name": "鑫海羽毛球馆",
+		"arena_longitude": "113.86",
+		"arena_latitude": "22.62"
+	},
+	{
+		"arena_name": "锦绣花园会所羽毛球馆",
+		"arena_longitude": "113.99",
+		"arena_latitude": "22.53"
+	},
+	{
+		"arena_name": "五园羽毛球馆",
+		"arena_longitude": "114.07",
+		"arena_latitude": "22.61"
+	},
+	{
+		"arena_name": "南联体育公园羽毛球馆",
+		"arena_longitude": "113.92",
+		"arena_latitude": "22.56"
+	},
+	{
+		"arena_name": "南园精瑛羽毛球馆",
+		"arena_longitude": "113.92",
+		"arena_latitude": "22.52"
+	},
+	{
+		"arena_name": "前海生生羽毛球馆",
+		"arena_longitude": "113.91",
+		"arena_latitude": "22.52"
+	},
+	{
+		"arena_name": "羽毛球馆",
+		"arena_longitude": "114.09",
+		"arena_latitude": "22.56"
+	},
+	{
+		"arena_name": "朗界羽毛球馆",
+		"arena_longitude": "114.05",
+		"arena_latitude": "22.64"
+	},
+	{
+		"arena_name": "兴东羽毛球馆",
+		"arena_longitude": "113.92",
+		"arena_latitude": "22.58"
+	},
+	{
+		"arena_name": "昌汪羽毛球馆铭羽俱乐部",
+		"arena_longitude": "114.08",
+		"arena_latitude": "22.65"
+	},
+	{
+		"arena_name": "传奇羽毛球馆",
+		"arena_longitude": "113.94",
+		"arena_latitude": "22.56"
+	},
+	{
+		"arena_name": "尚易羽毛球俱乐部",
+		"arena_longitude": "114.17",
+		"arena_latitude": "22.56"
+	},
+	{
+		"arena_name": "赤湾生生羽毛球馆",
+		"arena_longitude": "113.9",
+		"arena_latitude": "22.48"
+	},
+	{
+		"arena_name": "星动力佛雷斯羽毛球馆（龙岗坂田店）",
+		"arena_longitude": "114.06",
+		"arena_latitude": "22.61"
+	},
+	{
+		"arena_name": "桂芳园羽毛球馆",
+		"arena_longitude": "114.14",
+		"arena_latitude": "22.61"
+	},
+	{
+		"arena_name": "宝田羽毛球馆",
+		"arena_longitude": "113.88",
+		"arena_latitude": "22.59"
+	},
+	{
+		"arena_name": "飞羽羽毛球馆",
+		"arena_longitude": "114.25",
+		"arena_latitude": "22.7"
+	},
+	{
+		"arena_name": "布吉街道羽毛球馆",
+		"arena_longitude": "114.13",
+		"arena_latitude": "22.61"
+	},
+	{
+		"arena_name": "银湖羽毛球馆",
+		"arena_longitude": "114.09",
+		"arena_latitude": "22.57"
+	},
+	{
+		"arena_name": "荟润羽毛球馆",
+		"arena_longitude": "114.11",
+		"arena_latitude": "22.56"
+	},
+	{
+		"arena_name": "鸣轩羽毛球馆",
+		"arena_longitude": "114.03",
+		"arena_latitude": "22.65"
+	},
+	{
+		"arena_name": "海润羽毛球馆A馆",
+		"arena_longitude": "113.92",
+		"arena_latitude": "22.52"
+	},
+	{
+		"arena_name": "超越羽毛球馆",
+		"arena_longitude": "113.86",
+		"arena_latitude": "22.59"
+	},
+	{
+		"arena_name": "深圳市蓝宝体育羽毛球馆",
+		"arena_longitude": "113.93",
+		"arena_latitude": "22.55"
+	},
+	{
+		"arena_name": "会展湾羽毛球馆",
+		"arena_longitude": "113.8",
+		"arena_latitude": "22.67"
+	},
+	{
+		"arena_name": "好一拍羽毛球馆",
+		"arena_longitude": "113.92",
+		"arena_latitude": "22.56"
+	},
+	{
+		"arena_name": "可园羽毛球馆",
+		"arena_longitude": "114.13",
+		"arena_latitude": "22.6"
+	},
+	{
+		"arena_name": "华侨城体育文化中心羽毛球馆",
+		"arena_longitude": "113.98",
+		"arena_latitude": "22.54"
+	},
+	{
+		"arena_name": "可园羽毛球馆",
+		"arena_longitude": "114.13",
+		"arena_latitude": "22.6"
+	},
+	{
+		"arena_name": "华侨城体育文化中心羽毛球馆",
+		"arena_longitude": "113.98",
+		"arena_latitude": "22.54"
+	},
+	{
+		"arena_name": "皇岗羽毛球馆",
+		"arena_longitude": "114.07",
+		"arena_latitude": "22.56"
+	},
+	{
+		"arena_name": "熊猫羽毛球馆（石岩店）",
+		"arena_longitude": "113.93",
+		"arena_latitude": "22.64"
+	},
+	{
+		"arena_name": "圳宝羽毛球馆",
+		"arena_longitude": "114.02",
+		"arena_latitude": "22.65"
+	},
+	{
+		"arena_name": "谁羽争峰羽毛球生活馆",
+		"arena_longitude": "114.2",
+		"arena_latitude": "22.65"
+	},
+	{
+		"arena_name": "梅龙羽毛球馆",
+		"arena_longitude": "114.07",
+		"arena_latitude": "22.57"
+	},
+	{
+		"arena_name": "华雅羽毛球馆",
+		"arena_longitude": "114.05",
+		"arena_latitude": "22.64"
+	},
+	{
+		"arena_name": "福海羽毛球馆（永福路店）",
+		"arena_longitude": "113.8",
+		"arena_latitude": "22.67"
+	},
+	{
+		"arena_name": "龙井羽毛球篮球馆",
+		"arena_longitude": "113.97",
+		"arena_latitude": "22.57"
+	},
+	{
+		"arena_name": "尚酷·羽毛球馆（暨南大学店）",
+		"arena_longitude": "113.99",
+		"arena_latitude": "22.54"
+	},
+	{
+		"arena_name": "纪元体育羽毛球馆（沙井店）",
+		"arena_longitude": "113.83",
+		"arena_latitude": "22.72"
+	},
+	{
+		"arena_name": "深圳宝羽培训（宝能第一空间店）",
+		"arena_longitude": "114.11",
+		"arena_latitude": "22.57"
+	},
+	{
+		"arena_name": "普威羽毛球馆",
+		"arena_longitude": "113.9",
+		"arena_latitude": "22.57"
+	},
+	{
+		"arena_name": "民治羽毛球馆",
+		"arena_longitude": "114.05",
+		"arena_latitude": "22.62"
+	},
+	{
+		"arena_name": "五和羽毛球馆",
+		"arena_longitude": "114.06",
+		"arena_latitude": "22.63"
+	},
+	{
+		"arena_name": "大与羽毛球馆（横岗店）",
+		"arena_longitude": "114.22",
+		"arena_latitude": "22.65"
+	},
+	{
+		"arena_name": "深北地区羽毛球馆",
+		"arena_longitude": "114.12",
+		"arena_latitude": "22.56"
+	},
+	{
+		"arena_name": "大上羽毛球馆",
+		"arena_longitude": "114.15",
+		"arena_latitude": "22.69"
+	},
+	{
+		"arena_name": "金羽羽毛球馆",
+		"arena_longitude": "113.93",
+		"arena_latitude": "22.55"
+	},
+	{
+		"arena_name": "羽毛球馆",
+		"arena_longitude": "114.23",
+		"arena_latitude": "22.69"
+	},
+	{
+		"arena_name": "伍人行下沙羽毛球馆",
+		"arena_longitude": "114.03",
+		"arena_latitude": "22.53"
+	},
+	{
+		"arena_name": "鑫龙羽毛球馆（龙华店）",
+		"arena_longitude": "114.02",
+		"arena_latitude": "22.64"
+	},
+	{
+		"arena_name": "沿山羽毛球馆",
+		"arena_longitude": "113.92",
+		"arena_latitude": "22.5"
+	},
+	{
+		"arena_name": "星际羽毛球馆（杨美店）",
+		"arena_longitude": "114.08",
+		"arena_latitude": "22.63"
+	},
+	{
+		"arena_name": "凯星羽毛球馆",
+		"arena_longitude": "113.88",
+		"arena_latitude": "22.6"
+	},
+	{
+		"arena_name": "龙兴翔羽毛球馆（南山店）",
+		"arena_longitude": "113.92",
+		"arena_latitude": "22.52"
+	},
+	{
+		"arena_name": "SUNNY羽毛球馆",
+		"arena_longitude": "114.14",
+		"arena_latitude": "22.63"
+	},
+	{
+		"arena_name": "顺平羽毛球馆",
+		"arena_longitude": "114.11",
+		"arena_latitude": "22.69"
+	},
+	{
+		"arena_name": "五星羽毛球馆",
+		"arena_longitude": "113.87",
+		"arena_latitude": "22.6"
+	},
+	{
+		"arena_name": "羽毛球馆",
+		"arena_longitude": "113.94",
+		"arena_latitude": "22.56"
+	},
+	{
+		"arena_name": "环羽羽毛球馆",
+		"arena_longitude": "114.13",
+		"arena_latitude": "22.68"
+	},
+	{
+		"arena_name": "晨希羽毛球馆",
+		"arena_longitude": "114.13",
+		"arena_latitude": "22.57"
+	},
+	{
+		"arena_name": "粤城羽毛球馆",
+		"arena_longitude": "113.92",
+		"arena_latitude": "22.52"
+	},
+	{
+		"arena_name": "皓天羽毛球馆（清水河店）",
+		"arena_longitude": "114.11",
+		"arena_latitude": "22.58"
+	},
+	{
+		"arena_name": "昌汪亚狮龙羽毛球馆",
+		"arena_longitude": "114.07",
+		"arena_latitude": "22.63"
+	},
+	{
+		"arena_name": "明雅龙珠羽毛球馆",
+		"arena_longitude": "113.96",
+		"arena_latitude": "22.57"
+	},
+	{
+		"arena_name": "海虹羽毛球馆",
+		"arena_longitude": "113.86",
+		"arena_latitude": "22.57"
+	},
+	{
+		"arena_name": "名仕羽毛球馆",
+		"arena_longitude": "114.37",
+		"arena_latitude": "22.67"
+	},
+	{
+		"arena_name": "跃动羽毛球培训",
+		"arena_longitude": "113.92",
+		"arena_latitude": "22.52"
+	},
+	{
+		"arena_name": "深羽羽毛球培训",
+		"arena_longitude": "114.05",
+		"arena_latitude": "22.56"
+	},
+	{
+		"arena_name": "羽逸羽毛球馆",
+		"arena_longitude": "113.95",
+		"arena_latitude": "22.69"
+	},
+	{
+		"arena_name": "新羽胜羽毛球馆（科技园店）",
+		"arena_longitude": "113.95",
+		"arena_latitude": "22.54"
+	},
+	{
+		"arena_name": "鸿冠羽毛球馆南山壹心",
+		"arena_longitude": "113.94",
+		"arena_latitude": "22.57"
+	},
+	{
+		"arena_name": "南山科技园文体中心羽毛球馆",
+		"arena_longitude": "113.95",
+		"arena_latitude": "22.55"
+	},
+	{
+		"arena_name": "天旺羽毛球馆",
+		"arena_longitude": "114.05",
+		"arena_latitude": "22.64"
+	},
+	{
+		"arena_name": "李宁.幻鹰羽毛球馆",
+		"arena_longitude": "114.04",
+		"arena_latitude": "22.67"
+	},
+	{
+		"arena_name": "壹号羽毛球（腾邦馆）",
+		"arena_longitude": "114.06",
+		"arena_latitude": "22.5"
+	},
+	{
+		"arena_name": "海旺羽毛球馆",
+		"arena_longitude": "113.89",
+		"arena_latitude": "22.56"
+	},
+	{
+		"arena_name": "鹏兴羽毛球馆",
+		"arena_longitude": "114.18",
+		"arena_latitude": "22.57"
+	},
+	{
+		"arena_name": "达梦博时特羽毛球馆",
+		"arena_longitude": "114.05",
+		"arena_latitude": "22.65"
+	},
+	{
+		"arena_name": "彗星羽毛球馆",
+		"arena_longitude": "114.06",
+		"arena_latitude": "22.62"
+	},
+	{
+		"arena_name": "新羽胜羽毛球馆（公明店）",
+		"arena_longitude": "113.91",
+		"arena_latitude": "22.78"
+	},
+	{
+		"arena_name": "星空羽毛球馆",
+		"arena_longitude": "114.4",
+		"arena_latitude": "22.72"
+	},
+	{
+		"arena_name": "大康羽毛球馆",
+		"arena_longitude": "113.96",
+		"arena_latitude": "22.59"
+	},
+	{
+		"arena_name": "盟虎羽毛球馆",
+		"arena_longitude": "114.25",
+		"arena_latitude": "22.58"
+	},
+	{
+		"arena_name": "啪啪运动羽毛球红星馆",
+		"arena_longitude": "114.1",
+		"arena_latitude": "22.56"
+	},
+	{
+		"arena_name": "冠跃羽毛球馆",
+		"arena_longitude": "113.96",
+		"arena_latitude": "22.58"
+	},
+	{
+		"arena_name": "龙兴羽毛球馆",
+		"arena_longitude": "114.04",
+		"arena_latitude": "22.67"
+	},
+	{
+		"arena_name": "鹏大羽毛球馆",
+		"arena_longitude": "114.02",
+		"arena_latitude": "22.64"
+	}
+]

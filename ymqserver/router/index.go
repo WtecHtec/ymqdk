@@ -33,6 +33,7 @@ func InitRouter(r *gin.Engine) {
 		InitAuthUserRouter(auth)
 		InitAuthEmojRouter(auth)
 		InitAuthFormResultRouter(auth)
+		InitAuthArenaRouter(auth)
 	}
 	TestHello(r)
 }

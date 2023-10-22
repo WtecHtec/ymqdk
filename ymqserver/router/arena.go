@@ -15,7 +15,6 @@ func InitAuthArenaRouter(r *gin.RouterGroup) {
 	r.POST("/getarenanear", authHandleArenaNear)
 	r.POST("/getarenaall", authHandleArenaAll)
 }
-}
 func authHandleArenaLike(c *gin.Context) {
 	openId := uitls.GetLoginOpenId(c)
 	if openId == "" {
@@ -53,7 +52,6 @@ func authHandleArenaNear(c *gin.Context) {
 	}
 	c.JSON(config.STATUS_SUE, gin.H{"code": config.STATUS_SUE, "message": config.STATUS_MSG[config.STATUS_SUE], "data": datas})
 }
-
 
 func authHandleArenaAll(c *gin.Context) {
 	openId := uitls.GetLoginOpenId(c)

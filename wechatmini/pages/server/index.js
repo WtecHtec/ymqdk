@@ -1,4 +1,4 @@
-import { otherHttp } from "../../utils/http";
+import { otherHttp, Request } from "../../utils/http";
 
 function getWeatherByLocation(key, location) {
 	// 22.55329:113.88308
@@ -6,6 +6,33 @@ function getWeatherByLocation(key, location) {
 	return otherHttp(url)
 }
 
+/**
+ * 检查登录态
+ * @returns 
+ */
+function postCheckLogin() {
+	return Request('/auth/refresh_token');
+}
+
+/**
+ * 请求登陆
+ * @param {*} code 
+ * @returns 
+ */
+function postLogin(code, nickName) {
+	return Request('/login', { code, nickName })
+}
+/**
+ * 获取 所有球馆
+ * @returns 
+ */
+function getArenaAll(arena_belong = '深圳') {
+	return Request('/auth/getarenaall', { arena_belong })
+}
+
 export {
-	getWeatherByLocation
+	getWeatherByLocation,
+	postCheckLogin,
+	postLogin,
+	getArenaAll,
 }

@@ -4,7 +4,7 @@
 		<button class="auth-btn" bindtap="bindUserProfile">点击授权</button>
 </view>
 <view wx:else class="content">
-		<map class="target-map" show-location="true" longitude="{{location.longitude}}" latitude="{{location.latitude}}">
+		<map id="ymqMapId" class="target-map" longitude="{{location.longitude}}" latitude="{{location.latitude}}">
 				<cover-view class="top-nav">
 						<cover-view class="nav-left">
 								<cover-view>{{ name || '' }}</cover-view>
@@ -25,7 +25,7 @@
 								</cover-view>
 						</cover-view>
 				</cover-view>
-				<cover-view class="btn" bindtap="bindGotoRecord">
+				<cover-view wx:if="{{arenaBelong}}" class="btn" bindtap="bindGotoRecord">
 						<cover-image class="btn-img" src="../../images/index/icon-01.png" />
 				</cover-view>
 		</map>

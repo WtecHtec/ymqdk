@@ -26,7 +26,7 @@ func Authenticator(c *gin.Context) (interface{}, error) {
 	}
 	openId := getWXOpen(loginVals.Code, loginVals.NickName)
 	if openId != "" {
-		loginStatus := dao.CreateUser(openId, loginVals.AvatarUrl, loginVals.NickName)
+		loginStatus := dao.CreateUser(openId, loginVals.NickName)
 		if loginStatus {
 			return &model.User{
 				OpenId: openId,

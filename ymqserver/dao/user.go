@@ -10,10 +10,11 @@ import (
 )
 
 //  注册新用户
-func CreateUser(openId string, avatarUrl string, nickName string) bool {
+func CreateUser(openId string, nickName string) bool {
 	user := &model.User{
 		Id:     uitls.GetUUID(),
 		OpenId: openId,
+		Name:   nickName,
 		Enable: true,
 	}
 	has, e := datasource.Engine.Where("wx_openid = ?", openId).Get(&model.User{})
@@ -37,7 +38,7 @@ func CreateUser(openId string, avatarUrl string, nickName string) bool {
 // 获取用户信息
 func GetUserInfoByOpenId(openId string) (model.User, bool) {
 	userInfo := make([]model.User, 0)
-	err := datasource.Engine.Cols("user_id", "user_name", "user_phone", "user_gender", "user_head", "create_time").Where("wx_openid = ?", openId).Find(&userInfo)
+	err := datasource.Engine.Cols("user_id", "user_name", "create_time").Where("wx_openid = ?", openId).Find(&userInfo)
 	if err != nil || len(userInfo) == 0 {
 		logger.Logger.Error(fmt.Sprintf("获取用户信息失败, Openid: %v", openId))
 		return model.User{}, false
