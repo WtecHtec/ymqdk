@@ -30,9 +30,17 @@ function getArenaAll(arena_belong = '深圳') {
 	return Request('/auth/getarenaall', { arena_belong })
 }
 
+
+
+/** 提交反馈 */
+function subitFeebBack(desc, score) {
+  return Request('/auth/createfeedback', { desc, score })
+}
+
 export {
 	getWeatherByLocation,
 	postCheckLogin,
 	postLogin,
 	getArenaAll,
+  subitFeebBack,
 }
