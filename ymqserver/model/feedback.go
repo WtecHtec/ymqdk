@@ -10,3 +10,7 @@ type FeedBack struct {
 	CreateTime time.Time `xorm:"DateTime notnull created  'create_time' comment('创建时间')"`
 	UpdateTime time.Time `xorm:"DateTime notnull updated  'update_time' comment('更新时间')"`
 }
+
+// ALTER TABLE feed_back MODIFY fb_desc varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '问题描述';
+
+// ALTER TABLE feed_back CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

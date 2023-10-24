@@ -24,7 +24,7 @@ func authHandleCreateFeedBack(c *gin.Context) {
 		c.JSON(config.STATUS_RUQED, gin.H{"code": config.STATUS_RUQED, "message": config.STATUS_MSG[config.STATUS_RUQED]})
 		return
 	}
-	ok, status := dao.CreateFeedBack(openId, feebBack.FbDesc)
+	ok, status := dao.CreateFeedBack(openId, feebBack.FbDesc, feebBack.FbScore)
 	if ok == false {
 		c.JSON(status, gin.H{"code": status, "message": config.STATUS_MSG[status]})
 		return

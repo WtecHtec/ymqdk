@@ -11,11 +11,12 @@ import (
 	"ymqserver/uitls"
 )
 
-func CreateFeedBack(openId string, desc string) (bool, int) {
+func CreateFeedBack(openId string, desc string, score string) (bool, int) {
 	feebBack := &model.FeedBack{
 		Id:       uitls.GetUUID(),
 		CreateId: openId,
 		FbDesc:   desc,
+		FbScore:  score,
 	}
 	has, value := datasource.GetRedisByString(openId)
 	if has == true {

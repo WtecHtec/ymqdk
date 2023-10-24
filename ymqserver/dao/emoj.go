@@ -12,7 +12,7 @@ import (
 // 获取表情数据
 func GetEmojs() (bool, int, []model.Emoj) {
 	datas := make([]model.Emoj, 0)
-	err := datasource.Engine.SQL(fmt.Sprintf(`select emo_icon_url, emo_desc from emoj where  enable = 1 `)).Find(&datas)
+	err := datasource.Engine.SQL(fmt.Sprintf(`select emo_id, emo_icon_url, emo_desc from emoj where  enable = 1 `)).Find(&datas)
 	if err != nil {
 		logger.Logger.Error(fmt.Sprintf("GetEmojs获取数据失败 %v", err))
 		return false, config.STATUS_ERROR, nil
