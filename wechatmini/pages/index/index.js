@@ -51,13 +51,16 @@ Page({
 				// const speed = res.speed
 				// const accuracy = res.accuracy
 				console.log('res-===', res)
+        that.setData({
+          location: {
+            latitude,
+            longitude,
+          }
+        }, () => {
+          this.setLocationToApp()
+        })
+        // 避免重复请求接口
 				if (this.data.name) {
-					that.setData({
-						location: {
-							latitude,
-							longitude,
-						}
-					})
 					return
 				};
 				const [name, high] = await that.getWeatherByLocation(this.data.seniverseKey, `${latitude}:${longitude}`)
@@ -68,15 +71,13 @@ Page({
 						icon: 'error',
 						duration: 2000
 					})
-				}
+				} else {
+          app.store.arenaBelong = belong
+        }
 				that.setData({
 					name,
 					high,
 					arenaBelong: belong,
-					location: {
-						latitude,
-						longitude,
-					}
 				})
 			},
 			fail(err) {
@@ -285,7 +286,6 @@ Page({
   async getEmojAllDatas() {
     const [err, res] =  await getEmojAll()
     const data = getMutliLevelProperty(res, 'data', [])
-    
 		if (!err && res && res.code === 200 && Array.isArray(data) && data.length) {
      const emojDatas = data.map(({Id, EmoIconUrl, EmoDesc}) => {
         return {
@@ -297,6 +297,13 @@ Page({
       app.store.emojDatas  = emojDatas;
       this.data.emojDatas = emojDatas;
     }
+  },
+  /**
+   * 设置坐标位置
+   */
+  setLocationToApp() {
+    const { location } = this.data;
+    app.store.locations = { ...location }
   }
 
 

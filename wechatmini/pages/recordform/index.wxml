@@ -3,12 +3,16 @@
 				<view class="form-item">
 						<view class="form-item-lable">球馆</view>
 						<view class="form-item-value">
-								<picker class="w-100p " bindchange="bindPickerChange" range-key="name" data-key="recordArena" range="{{arenaDatas}}">
+								<!-- <picker class="w-100p " bindchange="bindPickerChange" range-key="name" data-key="recordArena" range="{{arenaDatas}}">
 										<view class="w-100p picker-content">
 												<view class="picker-txt">{{ form.recordArena.showData}}</view>
 												<image class="picker-icon" src="../../images/index/icon-06.png" />
 										</view>
-								</picker>
+								</picker> -->
+                <view class="w-100p emoj-content" bindtap="bindGoArenPicker">
+										<view class="show-value">{{ form.recordArena.showData }}</view>
+										<image class="picker-icon" src="../../images/index/icon-06.png" />
+								</view>
 						</view>
 				</view>
 				<view class="form-item">

@@ -45,6 +45,21 @@ function subitFeebBack(desc, score) {
 function getEmojAll() {
   return Request('/auth/selectemojall')
 }
+
+/** 
+ * 获取最近的数据
+ */
+function getArenaNear(arena_belong,  arena_latitude, arena_longitude,) {
+  return Request('/auth/getarenanear', { arena_belong, arena_longitude: String(arena_longitude) ,  arena_latitude: String(arena_latitude) })
+}
+
+/**
+ * 模糊查询 
+ */
+
+ function getArenaLike(arena_belong,  name) {
+  return Request('/auth/selectarenalike', { arena_belong, name })
+}
 export {
 	getWeatherByLocation,
 	postCheckLogin,
@@ -52,4 +67,6 @@ export {
 	getArenaAll,
   subitFeebBack,
   getEmojAll,
+  getArenaNear,
+  getArenaLike,
 }

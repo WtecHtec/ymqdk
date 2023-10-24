@@ -24,17 +24,8 @@ Page({
 				value: '',
 			},
 		},
-		emojDatas: app.store.emojDatas,
-		arenaDatas: [{
-			id: 0,
-			name: '美国'
-		},
-		{
-			id: 1,
-			name: '中国'
-		}],
+		emojDatas: [],
 		showEmoj: false,
-
 	},
 
 	/**
@@ -62,7 +53,16 @@ Page({
 	 * 生命周期函数--监听页面显示
 	 */
 	onShow() {
-
+    console.log('onshow', app.cache)
+    const name =  getMutliLevelProperty(app, 'cache.arenaitem.Name', '')
+    const Id = getMutliLevelProperty(app, 'cache.arenaitem.Id', '')
+    if (name && Id) {
+      this.setData({
+        'form.recordArena.value': Id,
+        'form.recordArena.showData': name
+      });
+    }
+ 
 	},
 
 	/**
@@ -167,5 +167,9 @@ Page({
 	bindEmoj() {
 		this.setData({ showEmoj: !this.data.showEmoj });
 	},
+
+  bindGoArenPicker() {
+    wx.navigateTo({ url: `/pages/arenaselect/index`, })
+  },
 
 })

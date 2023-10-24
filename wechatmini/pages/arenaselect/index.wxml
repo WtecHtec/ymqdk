@@ -1,0 +1,21 @@
+<view class="page-safe">
+  <view class="fix-header sinput-container">
+    <view class="s-container  {{isFocus ? 'focus' : 'blur'}}">
+      <image src="../../images/index/icon-11.png" class="s-icon"/>
+      <view bindtap="bindInput" style="flex:1;">
+        <input class="s-input {{isFocus ? '' : 's-input-ellipse'}}" placeholder="关键字" placeholder-class="placeholder" 	confirm-type="search" focus="{{isFocus}}"
+          bindfocus="bindfocus"
+          bindblur="bindblur"
+          bindconfirm="bindconfirm"
+          bindinput="bindUsrInput"
+        />
+      </view>
+      <view class="s-txt" bindtap="bindFind">搜索</view>
+    </view>
+  </view>
+  <view wx:if="{{arenaDatas && arenaDatas.length}}" class="srank-container">
+    <view wx:if="{{!hasTap}}" class="r-tip">附近</view>
+    <view wx:for="{{arenaDatas}}" class="r-main" wx:key="index" data-item="{{item}}" bindtap="bindSelectItem" hover-class="hover-class"> {{ item.Name }}</view>
+  </view>
+
+</view>

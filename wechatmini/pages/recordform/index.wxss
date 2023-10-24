@@ -125,3 +125,8 @@
 	width: 56rpx;
 	height: 56rpx;
 }
+
+.show-value {
+  color: #333333;
+  font-size: 28rpx;
+}

@@ -33,10 +33,9 @@ func GetNearbyArena(arenaLongitude string, arenaLatitude string, arenaBelong str
 	sqlStr := fmt.Sprintf(`
 	SELECT
 	arena_id, arena_name, arena_location,
-	(st_distance (point (arena_longitude, arena_latitude), point(%v, %v) ) * 111195) AS distance
-	FROM
-	arena
-	WHERE distance < 500 AND  arena_belong = '%v'
+	(st_distance (point (arena_longitude, arena_latitude), point(%v, %v) ) * 111195) as distance
+	FROM arena
+	WHERE arena_belong = '%v'
 	ORDER BY distance
 	limit 0, 5;`, arenaLongitude, arenaLatitude, arenaBelong)
 	err := datasource.Engine.SQL(sqlStr).Find(&datas)

@@ -17,7 +17,10 @@ App({
 		locationRight: false,
 		isLogin: false,
     emojDatas: [],
+    locations: {},
+    arenaBelong: '',
 	},
+  cache: {},
 	onLaunch() {
 		console.log(this)
 	},
