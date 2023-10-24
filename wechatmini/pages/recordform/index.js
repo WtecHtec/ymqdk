@@ -1,5 +1,7 @@
 // pages/recordform/index.js
 import { getMutliLevelProperty } from "../../utils/util"
+const app  = getApp()
+console.log('app=== emojDatas', app)
 Page({
 
 	/**
@@ -15,51 +17,14 @@ Page({
 				showData: '',
 			},
 			feeling: {
-				value: 0,
-				showData: '../../images/emoj/happy.png',
+				value: '',
+				showData: '',
 			},
 			thoughts: {
 				value: '',
 			},
 		},
-		emojDatas: [
-			{
-				id: 0,
-				url: '../../images/emoj/happy.png'
-			},
-			{
-				id: 1,
-				url: '../../images/emoj/cry.png'
-			},
-			{
-				id: 2,
-				url: '../../images/emoj/proud.png'
-			},
-			{
-				id: 3,
-				url: '../../images/emoj/uncomfortable.png'
-			},
-			{
-				id: 4,
-				url: '../../images/emoj/color.png'
-			},
-			{
-				id: 5,
-				url: '../../images/emoj/sad.png'
-			},
-			{
-				id: 6,
-				url: '../../images/emoj/fakelaugh.png'
-			},
-			{
-				id: 7,
-				url: '../../images/emoj/embarrassing.png'
-			},
-			{
-				id: 8,
-				url: '../../images/emoj/other.png'
-			},
-		],
+		emojDatas: app.store.emojDatas,
 		arenaDatas: [{
 			id: 0,
 			name: '美国'
@@ -76,7 +41,14 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad(options) {
-
+    console.log(' app.store.emojDatas===',  app.store.emojDatas)
+    if (app.store.emojDatas.length) {
+      this.setData({
+        emojDatas:  app.store.emojDatas,
+        'form.feeling.value': 0,
+        'form.feeling.showData': app.store.emojDatas[0].url,
+      });
+    }
 	},
 
 	/**

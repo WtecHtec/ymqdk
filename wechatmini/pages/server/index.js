@@ -37,10 +37,19 @@ function subitFeebBack(desc, score) {
   return Request('/auth/createfeedback', { desc, score })
 }
 
+
+/**
+ *  获取表情
+ */
+
+function getEmojAll() {
+  return Request('/auth/selectemojall')
+}
 export {
 	getWeatherByLocation,
 	postCheckLogin,
 	postLogin,
 	getArenaAll,
   subitFeebBack,
+  getEmojAll,
 }

@@ -25,7 +25,7 @@
 								</cover-view>
 						</cover-view>
 				</cover-view>
-				<cover-view wx:if="{{arenaBelong}}" class="btn" bindtap="bindGotoRecord">
+				<cover-view wx:if="{{arenaBelong && hasInit}}" class="btn" bindtap="bindGotoRecord">
 						<cover-image class="btn-img" src="../../images/index/icon-01.png" />
 				</cover-view>
 		</map>

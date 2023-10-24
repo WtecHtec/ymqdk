@@ -25,3 +25,4 @@ yarn.lock
 logs
 upload
 server_config.yml
+*.tar

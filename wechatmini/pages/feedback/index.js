@@ -69,19 +69,29 @@ Page({
         })
       } else if (res.code === 202) {
         wx.showToast({
-          title: '24小时内，只能反馈2条',
+          title: '24小时内，只能反馈1条',
           icon: 'none',
           duration: 2000
         })
+      } else {
+        this.showFail('包含特殊字符')
       }
-      return
+
+    } else {
+      this.showFail()
     }
+
+  },
+
+  showFail(title) {
     wx.showToast({
-      title: '反馈失败',
+      title: title || '反馈失败',
       icon: 'none',
       duration: 2000
     })
   }
+
+
 
 
 

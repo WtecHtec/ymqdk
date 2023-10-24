@@ -1,8 +1,8 @@
 // index.js
-import { getWeatherByLocation, postCheckLogin, postLogin, getArenaAll } from "../server/index"
+import { getWeatherByLocation, postCheckLogin, postLogin, getArenaAll, getEmojAll } from "../server/index"
 import { getMutliLevelProperty } from "../../utils/util"
 import { setCacheByKey } from "../../utils/storage"
-import { CACHE_AUTH_TOKEN } from "../../config"
+import { CACHE_AUTH_TOKEN, IMG_FIX_URL } from "../../config"
 // 获取应用实例
 const app = getApp()
 
@@ -11,19 +11,20 @@ Page({
 		name: '深圳',
 		high: '20',
 		location: {
-			latitude: 22.55329,
-			longitude: 113.88308
+			latitude: 22.54286,
+			longitude: 114.05956
 		},
 		seniverseKey: app.config.seniverseKey,
 		isLogin: true || app.store.isLogin,
 		markerDatas: [],
 		belongs: ['深圳'],
 		arenaBelong: '深圳',
+    emojDatas: [],
+    hasInit: false,
 	},
 
 	onLoad() {
 		console.log(app)
-
 		app.bus.on('location', this.getCurentLocation)
 		this.checkLoin()
 	},
@@ -236,9 +237,14 @@ Page({
 	/**
 	 *  初始化数据
 	 */
-	InitData() {
+	async InitData() {
+
 		this.mapCtx = wx.createMapContext('ymqMapId')
-		this.getArenas();
+    await this.getEmojAllDatas();
+		await this.getArenas();
+    this.setData({
+      hasInit: true,
+    })
 	},
 	async getArenas() {
 		const { arenaBelong } = this.data;
@@ -274,6 +280,24 @@ Page({
 			// this.setData({ markerDatas })
 
 		}
-	}
+	},
+
+  async getEmojAllDatas() {
+    const [err, res] =  await getEmojAll()
+    const data = getMutliLevelProperty(res, 'data', [])
+    
+		if (!err && res && res.code === 200 && Array.isArray(data) && data.length) {
+     const emojDatas = data.map(({Id, EmoIconUrl, EmoDesc}) => {
+        return {
+          id: Id,
+          desc: EmoDesc,
+          url: `${IMG_FIX_URL}/${EmoIconUrl}`
+        }
+      })
+      app.store.emojDatas  = emojDatas;
+      this.data.emojDatas = emojDatas;
+    }
+  }
+
 
 })

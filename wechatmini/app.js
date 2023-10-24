@@ -16,10 +16,10 @@ App({
 	store: {
 		locationRight: false,
 		isLogin: false,
+    emojDatas: [],
 	},
 	onLaunch() {
 		console.log(this)
-
 	},
 	/**
 	 *
