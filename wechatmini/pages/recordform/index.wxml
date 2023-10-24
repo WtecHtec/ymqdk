@@ -32,7 +32,7 @@
 				</view>
 				<view class="emoj-picker {{  showEmoj && 'tap-emoj-picker' }}">
 						<block wx:for="{{emojDatas }}" wx:key="index">
-								<view class="emoj-picker-item" hover-class="hover-class" bindtap="bindEmojChange" data-type="feeling" data-key="feeling" data-value="{{index}}">
+								<view class="emoj-picker-item" hover-class="hover-class" bindtap="bindEmojChange" data-type="feeling" data-key="feeling" data-value="{{item.id}}">
 										<image class="emoj-picker-icon" src="{{ item.url }}" />
 								</view>
 						</block>

@@ -16,7 +16,7 @@ func GetArenaByLike(like string, arenaBelong string) (bool, int, []model.Arena) 
 	sqlStr := fmt.Sprintf(`select arena_id, arena_name, arena_location from arena where  enable = 1 and arena_belong ='%v' `, arenaBelong)
 	if like != "" {
 		sqlStr = fmt.Sprintf(`select arena_id, arena_name, arena_location from arena where  enable = 1 and arena_name like '%%%v%%' and arena_belong ='%v' `, like, arenaBelong)
-		logger.Logger.Error(fmt.Sprintf("GetArenaByLike获取数据 模糊查询 "))
+		logger.Logger.Info(fmt.Sprintf("GetArenaByLike获取数据 模糊查询 "))
 	}
 	err := datasource.Engine.SQL(sqlStr).Find(&datas)
 	if err != nil {

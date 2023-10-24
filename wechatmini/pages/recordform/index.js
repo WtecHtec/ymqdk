@@ -1,6 +1,6 @@
 // pages/recordform/index.js
 import { getMutliLevelProperty } from "../../utils/util"
-import { UploadImg } from "../server/index"
+import { UploadImg, createRecord } from "../server/index"
 const app  = getApp()
 console.log('app=== emojDatas', app)
 Page({
@@ -11,18 +11,22 @@ Page({
 	data: {
 		form: {
 			recordImg: {
+        key: 'record_img',
 				value: '',
         showData: '',
 			},
 			recordArena: {
+        key: 'arena_id',
 				value: '',
 				showData: '',
 			},
 			feeling: {
+        key: 'emoj_id',
 				value: '',
 				showData: '',
 			},
 			thoughts: {
+        key: 'record_desc',
 				value: '',
 			},
 		},
@@ -113,7 +117,7 @@ Page({
 		const { emojDatas } = this.data
 		const pickerData = emojDatas
 		const update = {}
-		update[`form.${key}.value`] = pickerData[value].id
+		update[`form.${key}.value`] = String(pickerData[value].id)
 		update[`form.${key}.showData`] = pickerData[value].url
 		this.setData({
 			// showEmoj: !this.data.showEmoj,
@@ -168,6 +172,7 @@ Page({
 			})
 			return;
 		}
+    this.handleCreateRecord()
 	},
 
 	checkForm(form) {
@@ -185,6 +190,47 @@ Page({
   bindGoArenPicker() {
     wx.navigateTo({ url: `/pages/arenaselect/index`, })
   },
+
+  /** 拼接参数 */
+  getParams(form) {
+    const params = {}
+    Object.keys(form).forEach(k => {
+      const { key, value } = form[k]
+      params[key] = value
+		})
+    return params
+  },
+  async handleCreateRecord() {
+    const { form } = this.data;
+    const [err, res ] = await createRecord(this.getParams(form))
+    if (!err && res ) {
+      if (res.code === 200) {
+        wx.showToast({
+          title: '反馈成功',
+          icon: 'none',
+          duration: 2000
+        })
+      } else if (res.code === 202) {
+        wx.showToast({
+          title: '24小时内，只能发布1条',
+          icon: 'none',
+          duration: 2000
+        })
+      } else {
+        this.showFail('包含特殊字符')
+      }
+
+    } else {
+      this.showFail()
+    }
+  },
+  showFail(title) {
+    wx.showToast({
+      title: title || '反馈失败',
+      icon: 'none',
+      duration: 2000
+    })
+  }
 
 
 })

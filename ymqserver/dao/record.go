@@ -2,11 +2,15 @@ package dao
 
 import (
 	"fmt"
+	"strconv"
+	"time"
 	"ymqserver/config"
 	"ymqserver/datasource"
 	"ymqserver/logger"
+	"ymqserver/model"
+	"ymqserver/requestmode"
 	"ymqserver/responsemode"
-	// "ymqserver/uitls"
+	"ymqserver/uitls"
 )
 
 // 根据 记录 id 获取记录详情
@@ -31,4 +35,36 @@ func GetRecordByMonth(strDate string) (bool, int, []responsemode.RecordResult) {
 	}
 	logger.Logger.Info("GetRecordByMonth获取数据成功")
 	return true, config.STATUS_SUE, datas
+}
+
+// 插入新的日志
+func CreateRecord(openId string, record requestmode.CreateRecord) (bool, int) {
+	mRecord := &model.Record{
+		Id:        uitls.GetUUID(),
+		CreateId:  openId,
+		ArenaId:   record.ArenaId,
+		EmojId:    record.EmojId,
+		RecordImg: record.RecordImg,
+	}
+	has, value := datasource.GetRedisByString(fmt.Sprintf("record_%v", openId))
+	if has == true {
+		if value == "2" {
+			return false, config.STATUS_RE
+		}
+	} else if has == false && value == "empty" {
+		ok := datasource.SetRedisByString(fmt.Sprintf("record_%v", openId), 1, 24*time.Hour)
+		if ok == false {
+			return false, config.STATUS_ERROR
+		}
+	} else {
+		return false, config.STATUS_ERROR
+	}
+	_, ok := datasource.Engine.Insert(*mRecord)
+	if ok != nil {
+		logger.Logger.Error(fmt.Sprintf("创建记录失败 %v", ok))
+		return false, config.STATUS_ERROR
+	}
+	count, _ := strconv.Atoi(value)
+	datasource.SetRedisByString(fmt.Sprintf("record_%v", openId), count+1, 24*time.Hour)
+	return true, config.STATUS_SUE
 }

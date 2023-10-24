@@ -61,8 +61,18 @@ function getArenaLike(arena_belong,  name) {
   return Request('/auth/selectarenalike', { arena_belong, name })
 }
 
+/** 上传图片 */
 function UploadImg(filePath) {
   return uploadImage(filePath)
+}
+
+/**
+ * 创建记录
+ * @param {*} params  { arena_id,emoj_id, record_img, record_desc }
+ * @returns 
+ */
+function createRecord(params) {
+  return Request('/auth/createrecord', { ...params })
 }
 
 export {
@@ -75,4 +85,5 @@ export {
   getArenaNear,
   getArenaLike,
   UploadImg,
+  createRecord,
 }
