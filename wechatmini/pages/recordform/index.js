@@ -42,7 +42,7 @@ Page({
     if (app.store.emojDatas.length) {
       this.setData({
         emojDatas:  app.store.emojDatas,
-        'form.feeling.value': 0,
+        'form.feeling.value': '0',
         'form.feeling.showData': app.store.emojDatas[0].url,
       });
     }
@@ -205,10 +205,13 @@ Page({
     const [err, res ] = await createRecord(this.getParams(form))
     if (!err && res ) {
       if (res.code === 200) {
-        wx.showToast({
-          title: '反馈成功',
-          icon: 'none',
-          duration: 2000
+        // wx.showToast({
+        //   title: '反馈成功',
+        //   icon: 'none',
+        //   duration: 2000
+        // })
+        wx.redirectTo({
+          url: '/pages/formresult/index'
         })
       } else if (res.code === 202) {
         wx.showToast({
