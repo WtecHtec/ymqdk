@@ -40,11 +40,13 @@ func GetRecordByMonth(strDate string) (bool, int, []responsemode.RecordResult) {
 // 插入新的日志
 func CreateRecord(openId string, record requestmode.CreateRecord) (bool, int) {
 	mRecord := &model.Record{
-		Id:        uitls.GetUUID(),
-		CreateId:  openId,
-		ArenaId:   record.ArenaId,
-		EmojId:    record.EmojId,
-		RecordImg: record.RecordImg,
+		Id:         uitls.GetUUID(),
+		CreateId:   openId,
+		ArenaId:    record.ArenaId,
+		EmojId:     record.EmojId,
+		RecordImg:  record.RecordImg,
+		RecordDesc: record.RecordDesc,
+		Enable:     true,
 	}
 	has, value := datasource.GetRedisByString(fmt.Sprintf("record_%v", openId))
 	if has == true {
