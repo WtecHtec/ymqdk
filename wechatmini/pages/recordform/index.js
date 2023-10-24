@@ -1,5 +1,6 @@
 // pages/recordform/index.js
 import { getMutliLevelProperty } from "../../utils/util"
+import { UploadImg } from "../server/index"
 const app  = getApp()
 console.log('app=== emojDatas', app)
 Page({
@@ -11,6 +12,7 @@ Page({
 		form: {
 			recordImg: {
 				value: '',
+        showData: '',
 			},
 			recordArena: {
 				value: '',
@@ -127,13 +129,25 @@ Page({
 			count: 1,
 			sizeType: ['compressed'],
 			sourceType: ['album', 'camera'],
-			success: (res) => {
+			success: async (res) => {
 				// tempFilePath可以作为img标签的src属性显示图片
 				const tempFilePaths = res.tempFilePaths
 				if (tempFilePaths.length) {
 					console.log(tempFilePaths)
+          const [err, res] = await UploadImg(tempFilePaths[0])
+          console.log('err, res====', err, res)
+          if (err !== 0) {
+            wx.showToast({
+              title: '图片上传失败!',
+              icon: 'error',
+              duration: 2000
+            })
+            return
+          }
+          const data = getMutliLevelProperty(res, 'data', '')
 					const update = {}
-					update[`form.${key}.value`] = tempFilePaths[0]
+					update[`form.${key}.value`] = data
+          update[`form.${key}.showData`] = tempFilePaths[0]
 					this.setData({
 						...update,
 					})
@@ -171,5 +185,6 @@ Page({
   bindGoArenPicker() {
     wx.navigateTo({ url: `/pages/arenaselect/index`, })
   },
+
 
 })

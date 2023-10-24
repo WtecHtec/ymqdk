@@ -1,4 +1,4 @@
-import { otherHttp, Request } from "../../utils/http";
+import { otherHttp, Request, uploadImage } from "../../utils/http";
 
 function getWeatherByLocation(key, location) {
 	// 22.55329:113.88308
@@ -57,9 +57,14 @@ function getArenaNear(arena_belong,  arena_latitude, arena_longitude,) {
  * 模糊查询 
  */
 
- function getArenaLike(arena_belong,  name) {
+function getArenaLike(arena_belong,  name) {
   return Request('/auth/selectarenalike', { arena_belong, name })
 }
+
+function UploadImg(filePath) {
+  return uploadImage(filePath)
+}
+
 export {
 	getWeatherByLocation,
 	postCheckLogin,
@@ -69,4 +74,5 @@ export {
   getEmojAll,
   getArenaNear,
   getArenaLike,
+  UploadImg,
 }

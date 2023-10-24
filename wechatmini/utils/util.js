@@ -21,6 +21,19 @@ function getMutliLevelProperty(ctx, path, defaultVal) {
 	return res;
 }
 
+
+function tryJsonPaseByStr(strJson, def) {
+  try {
+    const result = JSON.parse(strJson)
+    return result
+  } catch (error) {
+    console.log(error)
+  }
+  return def
+}
+
+
 export {
-	getMutliLevelProperty
+	getMutliLevelProperty,
+  tryJsonPaseByStr
 }

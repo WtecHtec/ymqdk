@@ -1,5 +1,6 @@
 import { getCacheByKey } from "./storage"
 import { BASE_URL, CACHE_AUTH_TOKEN } from "../config"
+import { getMutliLevelProperty, tryJsonPaseByStr } from "./util"
 // 获取应用实例
 const app = getApp()
 
@@ -50,7 +51,43 @@ const Request = (url, data) => {
 		})
 	})
 }
+
+function uploadImage(imgUrl) {
+  const minikey = getCacheByKey(CACHE_AUTH_TOKEN);
+  const header = {
+    Authorization: `Bearer ${minikey}`
+  }
+  return new Promise((resolve, reject) => {
+    wx.uploadFile({
+      url: `${BASE_URL}/auth/authupload`,
+      header: header,
+      name: 'file',
+      filePath: imgUrl,
+      success: (res) => {
+        if (res.statusCode === 200) {
+          const data = getMutliLevelProperty(res, 'data', "{}")
+          const result = tryJsonPaseByStr(data, {})
+          console.log('result===', result);
+          const code = getMutliLevelProperty(result, 'code', 0)
+          if (code === 200) {
+            resolve([0, result])
+          } else {
+            resolve([-1])
+          }
+        } else {
+          resolve([-1])
+        }
+      },
+      fail: (err) => {
+        console.error('uploadImage err', err)
+        resolve([-1])
+      }
+    })
+  })
+}
+
 export {
 	otherHttp,
-	Request
+	Request,
+  uploadImage,
 }

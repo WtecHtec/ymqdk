@@ -46,7 +46,7 @@
 						<view wx:if="{{ !form.recordImg.value }}" class="no-upload">
 								<image class="upload-img" src="../../images/index/icon-01.png" />
 						</view>
-						<image wx:else class="show-img" mode="aspectFill" src="{{form.recordImg.value}}" />
+						<image wx:else class="show-img" mode="aspectFill" src="{{form.recordImg.showData}}" />
 				</view>
 		</view>
 		<view class="form  mt-24">
