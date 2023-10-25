@@ -12,8 +12,8 @@ Page({
     keyValue: '',
     arenaBelong: '深圳',
     locations: {
-			latitude: 22.54286,
-			longitude: 114.05956
+			latitude: 22.540029,
+			longitude: 113.94583
     },
     arenaDatas: [],
     hasTap: false,
@@ -25,8 +25,8 @@ Page({
   onLoad() {
     const {  locations , arenaBelong } = app.store
     // console.log('locations===', locations, arenaBelong)
-    // this.data.locations =  locations || {},
-    // this.data.arenaBelong = arenaBelong || '深圳'
+    this.data.locations =  locations || {},
+    this.data.arenaBelong = arenaBelong || '深圳'
     this.getArenaNearData()
   },
   bindInput() {
