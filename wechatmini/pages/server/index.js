@@ -75,6 +75,14 @@ function createRecord(params) {
   return Request('/auth/createrecord', { ...params })
 }
 
+
+/**
+ * 按月 查询
+ */
+function getRecordByMonth(month) {
+  return Request('/auth/selectrecordbymonth', { month })
+}
+
 export {
 	getWeatherByLocation,
 	postCheckLogin,
@@ -86,4 +94,5 @@ export {
   getArenaLike,
   UploadImg,
   createRecord,
+  getRecordByMonth,
 }

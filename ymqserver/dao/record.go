@@ -16,7 +16,7 @@ import (
 // 根据 记录 id 获取记录详情
 func GetRecordById(recordId string) (bool, int, []responsemode.RecordResult) {
 	datas := make([]responsemode.RecordResult, 0)
-	err := datasource.Engine.SQL(fmt.Sprintf(`select r.record_img, r.record_desc, date_format(r.create_time, '%Y年%m月%%d日 %H:%i') as str_create_date, a.arena_name, a.arena_location from record r join left arena a on r.arena_id = a.arena_id and a.enable = 1 where r.enable = 1 and  r.record_id = '%v' `, recordId)).Find(&datas)
+	err := datasource.Engine.SQL(fmt.Sprintf(`select r.record_img, r.record_desc, date_format(r.create_time, '%%Y-%%m-%%d %%H:%%i') as str_create_date, a.arena_name, a.arena_location from record r left join  arena a on r.arena_id = a.arena_id and a.enable = 1 where r.enable = 1 and  r.record_id = '%v' `, recordId)).Find(&datas)
 	if err != nil {
 		logger.Logger.Error(fmt.Sprintf("GetRecordById获取数据失败 %v", err))
 		return false, config.STATUS_ERROR, nil
@@ -28,7 +28,7 @@ func GetRecordById(recordId string) (bool, int, []responsemode.RecordResult) {
 // 根据 日期 获取记录详情
 func GetRecordByMonth(strDate string) (bool, int, []responsemode.RecordResult) {
 	datas := make([]responsemode.RecordResult, 0)
-	err := datasource.Engine.SQL(fmt.Sprintf(`select r.record_img, r.record_desc, date_format(r.create_time, '%Y年%m月%%d日 %H:%i') as str_create_date, a.arena_name, a.arena_location from record r join left arena a on r.arena_id = a.arena_id and a.enable = 1 where r.enable = 1 and  DATE_FORMAT(r.create_time,'%Y-%m') = '%v' `, strDate)).Find(&datas)
+	err := datasource.Engine.SQL(fmt.Sprintf(`select r.emoj_id, r.record_img, r.record_desc, date_format(r.create_time, '%%Y-%%m-%%d %%H:%%i:%%s') as str_create_date, a.arena_name, a.arena_location from record r  left join  arena a on r.arena_id = a.arena_id and a.enable = 1 where r.enable = 1 and  DATE_FORMAT(r.create_time,'%%Y-%%m') = '%v' `, strDate)).Find(&datas)
 	if err != nil {
 		logger.Logger.Error(fmt.Sprintf("GetRecordByMonth获取数据失败 %v", err))
 		return false, config.STATUS_ERROR, nil

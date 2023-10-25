@@ -1,6 +1,7 @@
 package responsemode
 
 type RecordResult struct {
+	EmojId        string ` json:"emoj_id"`
 	RecordImg     string ` json:"record_img"`
 	RecordDesc    string `json:"record_desc" `
 	StrCreateDate string ` json:"str_create_date"`

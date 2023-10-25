@@ -40,10 +40,11 @@ Page({
 	onLoad(options) {
     console.log(' app.store.emojDatas===',  app.store.emojDatas)
     if (app.store.emojDatas.length) {
+      const { id, url } = app.store.emojDatas[0]
       this.setData({
         emojDatas:  app.store.emojDatas,
-        'form.feeling.value': '0',
-        'form.feeling.showData': app.store.emojDatas[0].url,
+        'form.feeling.value': String(id),
+        'form.feeling.showData': url,
       });
     }
 	},
