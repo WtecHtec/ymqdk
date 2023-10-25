@@ -70,3 +70,15 @@ func CreateRecord(openId string, record requestmode.CreateRecord) (bool, int) {
 	datasource.SetRedisByString(fmt.Sprintf("record_%v", openId), count+1, 24*time.Hour)
 	return true, config.STATUS_SUE
 }
+
+// 根据 日期 获取记录详情
+func GetRecordByYear(strDate string) (bool, int, []responsemode.RecordResult) {
+	datas := make([]responsemode.RecordResult, 0)
+	err := datasource.Engine.SQL(fmt.Sprintf(` select r.emoj_id, r.arena_id from  record r where r.enable = 1 and  DATE_FORMAT(r.create_time,'%%Y') = '%v' ORDER BY r.create_time`, strDate)).Find(&datas)
+	if err != nil {
+		logger.Logger.Error(fmt.Sprintf("GetRecordByYear获取数据失败 %v", err))
+		return false, config.STATUS_ERROR, nil
+	}
+	logger.Logger.Info("GetRecordByYear获取数据成功")
+	return true, config.STATUS_SUE, datas
+}

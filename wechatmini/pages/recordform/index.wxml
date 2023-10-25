@@ -54,5 +54,5 @@
 						<textarea placeholder="这一刻的想法..." data-key="thoughts" bindinput="bindInput" />
 				</view>
 		</view>
-		<button class="submit-btn  mt-24" bindtap="bindSend">发布</button>
+		<button class="submit-btn  mt-24" bindtap="bindSend">立即发布</button>
 </view>

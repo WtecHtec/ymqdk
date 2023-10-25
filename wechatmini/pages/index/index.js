@@ -262,6 +262,7 @@ Page({
 					latitude: Number(arena_latitude),
 					longitude: Number(arena_longitude),
 					iconPath: '../../images/index/icon-10.png',
+          joinCluster: true,
 				});
 
 			})

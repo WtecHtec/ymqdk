@@ -6,7 +6,7 @@ Page({
 	 */
 	data: {
 		iconImg: '../../images/index/icon-05.png',
-		txt: '为更好的体验,需要获取用户的头像信息'
+		txt: '记录成功'
 	},
 
 	/**
