@@ -67,6 +67,9 @@ Page({
       this.setData({
         'form.recordArena.value': Id,
         'form.recordArena.showData': name
+      }, () => {
+        // 清除缓存
+        app.cache.arenaitem = {}
       });
     }
  
