@@ -1,7 +1,8 @@
 // index.js
-import { getWeatherByLocation, postCheckLogin, postLogin, getArenaAll, getEmojAll } from "../server/index"
+import { getWeatherByLocation, postCheckLogin, postLogin, getArenaAll, getEmojAll, getRecordByYear } from "../server/index"
 import { getMutliLevelProperty } from "../../utils/util"
 import { setCacheByKey } from "../../utils/storage"
+import { formatDate } from "../../utils/date"
 import { CACHE_AUTH_TOKEN, IMG_FIX_URL } from "../../config"
 // 获取应用实例
 const app = getApp()
@@ -239,10 +240,11 @@ Page({
 	 *  初始化数据
 	 */
 	async InitData() {
-
 		this.mapCtx = wx.createMapContext('ymqMapId')
-    await this.getEmojAllDatas();
-		await this.getArenas();
+    const yRecordMap = await this.getRecordDataByYear();
+    const emojMap = await this.getEmojAllDatas();
+		const arenaDatas = await this.getArenas();
+    this.updateMapMarkers(arenaDatas, yRecordMap, emojMap);
     this.setData({
       hasInit: true,
     })
@@ -252,52 +254,32 @@ Page({
 		if (!arenaBelong) return
 		const [err, res] = await getArenaAll(arenaBelong)
 		const data = getMutliLevelProperty(res, 'data', [])
+    let arenaDatas = []
 		if (!err && res && res.code === 200 && Array.isArray(data) && data.length) {
-			const markerDatas = []
-			data.forEach(({ arena_id, arena_latitude, arena_longitude }, i) => {
-				markerDatas.push({
-					id: i,
-					width: 50,
-					height: 50,
-					latitude: Number(arena_latitude),
-					longitude: Number(arena_longitude),
-					iconPath: '../../images/index/icon-10.png',
-          joinCluster: true,
-				});
-
-			})
-			console.log(' markers ===', markerDatas)
-
-			this.mapCtx.addMarkers({
-				markers: markerDatas,
-				clear: true,
-				complete(res) {
-					console.log('clusterCreate addMarkers=====', res)
-				},
-				fail(err) {
-					console.error('clusterCreate fail', err)
-				}
-			})
-
+      arenaDatas = [...data]
 			// this.setData({ markerDatas })
-
 		}
+    return arenaDatas
 	},
 
   async getEmojAllDatas() {
     const [err, res] =  await getEmojAll()
     const data = getMutliLevelProperty(res, 'data', [])
+    const emojMap = {}
 		if (!err && res && res.code === 200 && Array.isArray(data) && data.length) {
      const emojDatas = data.map(({Id, EmoIconUrl, EmoDesc}) => {
-        return {
+        const item = {
           id: Id,
           desc: EmoDesc,
           url: `${IMG_FIX_URL}/${EmoIconUrl}`
         }
+        emojMap[Id] = item
+        return item
       })
       app.store.emojDatas  = emojDatas;
       this.data.emojDatas = emojDatas;
     }
+    return emojMap
   },
   /**
    * 设置坐标位置
@@ -305,7 +287,52 @@ Page({
   setLocationToApp() {
     const { location } = this.data;
     app.store.locations = { ...location }
+  },
+  /** 获取今年记录 */
+  async getRecordDataByYear() {
+    const year = formatDate(new Date(), 'yyyy')
+    const [err, res ] = await getRecordByYear(year)
+    const data = getMutliLevelProperty(res, 'data', [])
+    const yearRecord = {}
+    if (!err && res && res.code === 200 && Array.isArray(data) && data.length) { 
+      data.forEach(item => {
+        const { arena_id } = item
+        yearRecord[arena_id] = item
+      })
+    }
+    return yearRecord;
+  },
+  /** 更新地图 */
+  updateMapMarkers(arenaDatas, yRecordMap, emojMap) {
+    const markerDatas = []
+    arenaDatas.forEach(({ arena_id, arena_latitude, arena_longitude }, i) => {
+      let iconPath =  '../../images/index/icon-10.png'
+      if (yRecordMap[arena_id] && !yRecordMap[arena_id].check) {
+        const { emoj_id } = yRecordMap[arena_id]
+        yRecordMap[arena_id].check = true
+        iconPath = (emojMap[emoj_id] && emojMap[emoj_id].url) || iconPath;
+      }
+      markerDatas.push({
+        id: i,
+        width: 50,
+        height: 50,
+        latitude: Number(arena_latitude),
+        longitude: Number(arena_longitude),
+        iconPath,
+        // joinCluster: true,
+      });
+    })
+    console.log('markerDatas===', markerDatas)
+    this.mapCtx.addMarkers({
+      markers: markerDatas,
+      clear: true,
+      complete(res) {
+        console.log('clusterCreate addMarkers=====', res)
+      },
+      fail(err) {
+        console.error('clusterCreate fail', err)
+      }
+    })
   }
-
 
 })

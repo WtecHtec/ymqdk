@@ -83,6 +83,12 @@ function getRecordByMonth(month) {
   return Request('/auth/selectrecordbymonth', { month })
 }
 
+/**
+ *  按年 查询
+ */
+function getRecordByYear(year) {
+  return Request('/auth/selectrecordbyyear', { year})
+}
 export {
 	getWeatherByLocation,
 	postCheckLogin,
@@ -95,4 +101,5 @@ export {
   UploadImg,
   createRecord,
   getRecordByMonth,
+  getRecordByYear,
 }
