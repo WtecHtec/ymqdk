@@ -146,6 +146,12 @@ Page({
       })
     }
     return recordDatas;
+  },
+  bindDetail({ currentTarget}) {
+    const { item: { record_id } } = currentTarget.dataset
+    
+    wx.navigateTo({ url: `/pages/detail/index?record_id=${record_id}`, })
+
   }
 
 })

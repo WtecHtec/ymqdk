@@ -1,0 +1,10 @@
+<view class="d-content">
+  <view class="title">
+    <image class="title-icon" src="{{ detailItem.emoj_img}}" />: {{ detailItem.record_desc || '数据走丢了'}}
+  </view>
+  <view wx:if="{{detailItem.record_img}}" bindtap="bindView" class="perview-content">
+    <image class="perview-img" src="{{ detailItem.record_img}}" />
+  </view>
+  <view  class="footer-arena"> {{ detailItem.arena_name }} </view>
+  <view class="footer-time">{{ detailItem.str_create_date }}</view>
+</view>

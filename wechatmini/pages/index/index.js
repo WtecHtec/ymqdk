@@ -22,6 +22,7 @@ Page({
 		arenaBelong: '深圳',
     emojDatas: [],
     hasInit: false,
+    markerRcordMap: {}
 	},
 
 	onLoad() {
@@ -308,6 +309,9 @@ Page({
     arenaDatas.forEach(({ arena_id, arena_latitude, arena_longitude }, i) => {
       let iconPath =  '../../images/index/icon-10.png'
       if (yRecordMap[arena_id] && !yRecordMap[arena_id].check) {
+        this.data.markerRcordMap[i] = {
+          ...yRecordMap[arena_id],
+        }
         const { emoj_id } = yRecordMap[arena_id]
         yRecordMap[arena_id].check = true
         iconPath = (emojMap[emoj_id] && emojMap[emoj_id].url) || iconPath;
@@ -333,6 +337,15 @@ Page({
         console.error('clusterCreate fail', err)
       }
     })
+  },
+  bindMarkerTap(e) {
+    const { markerId } = e.detail
+    const { markerRcordMap } = this.data
+    if (markerRcordMap[markerId]) {
+      console.log('markerRcordMap[markerId]===', markerRcordMap[markerId])
+      const { record_id } = markerRcordMap[markerId]
+      wx.navigateTo({ url: `/pages/detail/index?record_id=${record_id}`,})
+    }
   }
 
 })

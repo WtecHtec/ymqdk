@@ -14,6 +14,7 @@ func InitAuthRecordRouter(r *gin.RouterGroup) {
 	r.POST("/selectrecordbymonth", authHandleSelectRecordByMonth)
 	r.POST("/createrecord", authHandleCreateRecord)
 	r.POST("/selectrecordbyyear", authHandleSelectRecordByYear)
+	r.POST("/selectrecordbyid", authHandleSelectRecordById)
 }
 func authHandleSelectRecordByMonth(c *gin.Context) {
 	openId := uitls.GetLoginOpenId(c)
@@ -65,6 +66,25 @@ func authHandleSelectRecordByYear(c *gin.Context) {
 		return
 	}
 	ok, status, datas := dao.GetRecordByYear(rqRecord.Year)
+	if ok == false {
+		c.JSON(status, gin.H{"code": status, "message": config.STATUS_MSG[status]})
+		return
+	}
+	c.JSON(config.STATUS_SUE, gin.H{"code": config.STATUS_SUE, "message": config.STATUS_MSG[config.STATUS_SUE], "data": datas})
+}
+
+func authHandleSelectRecordById(c *gin.Context) {
+	openId := uitls.GetLoginOpenId(c)
+	if openId == "" {
+		c.JSON(http.StatusUnauthorized, gin.H{"code": http.StatusUnauthorized})
+		return
+	}
+	var rqRecord requestmode.QueryIdRecord
+	if err := c.ShouldBind(&rqRecord); err != nil {
+		c.JSON(config.STATUS_RUQED, gin.H{"code": config.STATUS_RUQED, "message": config.STATUS_MSG[config.STATUS_RUQED]})
+		return
+	}
+	ok, status, datas := dao.GetRecordById(rqRecord.Id)
 	if ok == false {
 		c.JSON(status, gin.H{"code": status, "message": config.STATUS_MSG[status]})
 		return

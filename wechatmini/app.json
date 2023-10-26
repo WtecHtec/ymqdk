@@ -6,7 +6,8 @@
     "pages/feedback/index",
     "pages/medal/index",
     "pages/calendar/index",
-    "pages/arenaselect/index"
+    "pages/arenaselect/index",
+    "pages/detail/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

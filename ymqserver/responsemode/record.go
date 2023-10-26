@@ -1,6 +1,7 @@
 package responsemode
 
 type RecordResult struct {
+	RecordId      string `json:"record_id"`
 	ArenaId       string `json:"arena_id"`
 	EmojId        string ` json:"emoj_id"`
 	RecordImg     string ` json:"record_img"`

@@ -7,6 +7,11 @@ type QueryRecord struct {
 type QueryYearRecord struct {
 	Year string `form:"year" json:"year" binding:"required"`
 }
+
+type QueryIdRecord struct {
+	Id string `form:"id" json:"id" binding:"required"`
+}
+
 type CreateRecord struct {
 	ArenaId    string `form:"arena_id" json:"arena_id" binding:"required"`
 	EmojId     string `form:"emoj_id" json:"emoj_id" binding:"required"`

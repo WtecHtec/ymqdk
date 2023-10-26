@@ -1,0 +1,59 @@
+.d-content {
+  padding: 30rpx;
+  background-color: #ffffff;
+  min-height: calc(100vh - 60rpx);
+}
+
+
+
+.title-icon {
+  width: 52rpx;
+  height: 52rpx;
+}
+
+.title {
+  line-height: 46rpx;
+  font-size: 32rpx;
+  margin-bottom: 12rpx;
+}
+
+.perview-img {
+  width: 220rpx;
+  height: 220rpx;
+
+  position: relative;
+}
+
+.perview-content {
+  position: relative;
+  width: 220rpx;
+  height: 220rpx;
+  margin-bottom: 24rpx;
+}
+
+.perview-content::after {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  border: 2rpx solid rgba(0, 0, 0, 0.2);
+  transform: scale(0.5);
+  transform-origin: left top;
+  box-sizing: border-box;
+}
+
+.footer-time {
+  color: #999999;
+  font-size: 28rpx;
+  line-height: 28rpx;
+}
+
+.footer-arena {
+  color:rgba(87, 107, 149, 1);
+  font-size: 26rpx;
+  line-height: 26rpx;
+  margin-bottom: 24rpx;
+}
+

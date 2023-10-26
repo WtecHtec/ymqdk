@@ -13,7 +13,7 @@
 				</view>
 				<view class="c-date">
 						<view wx:for="{{showDatas}}" wx:key="index" class="c-d-item {{ item.toDay && 'c-265cf0'}} ">
-								<image wx:if="{{item.hasRecord && item.url}}" class="emoj-picker-icon" src="{{ item.url }}" />
+								<image wx:if="{{item.hasRecord && item.url}}" bindtap="bindDetail" data-item="{{item}}" class="emoj-picker-icon" src="{{ item.url }}" />
 								<block wx:else>{{ item.strDay || ''}}</block>
 						</view>
 				</view>

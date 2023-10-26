@@ -4,7 +4,7 @@
 		<button class="auth-btn" bindtap="bindUserProfile">点击授权</button>
 </view>
 <view wx:else class="content">
-		<map id="ymqMapId" class="target-map" longitude="{{location.longitude}}" latitude="{{location.latitude}}">
+		<map id="ymqMapId" bindmarkertap="bindMarkerTap" class="target-map" longitude="{{location.longitude}}" latitude="{{location.latitude}}">
 				<cover-view class="top-nav">
 						<cover-view class="nav-left">
 								<cover-view>{{ name || '' }}</cover-view>
